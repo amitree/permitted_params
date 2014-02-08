@@ -1,4 +1,4 @@
-class PermittedParams < Struct.new(:params, :current_user)
+class PermittedParams < Struct.new(:params, :controller)
   def method_missing(method, *args, &block)
     if method.match /_attributes\z/
       super
@@ -87,8 +87,13 @@ class PermittedParams < Struct.new(:params, :current_user)
       @permitted_params.params[:action].to_sym == action_name.to_sym
     end
 
-    def current_user
-      @permitted_params.current_user
+    def method_missing(method, *args, &block)
+      controller = @permitted_params.controller
+      if controller.respond_to? method
+        controller.send(method, *args, &block)
+      else
+        super
+      end
     end
   end
 end
@@ -96,6 +101,6 @@ end
 class ActionController::Base
 protected
   def permitted_params
-    PermittedParams.new(params, current_user)
+    PermittedParams.new(params, self)
   end
 end
