@@ -14,8 +14,8 @@ specify the mass-assignment rules in a single location using a very
 simple DSL.
 
 This work was inspired by
-[http://railscasts.com/episodes/371-strong-parameters](RailsCast #371) ---
-thanks, [https://github.com/ryanb](ryanb)!
+[RailsCast #371](http://railscasts.com/episodes/371-strong-parameters). 
+Thanks, [ryanb](https://github.com/ryanb)!
 
 Usage
 -----
