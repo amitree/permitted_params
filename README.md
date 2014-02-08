@@ -13,6 +13,10 @@ The `permitted_params` gem addresses this problem by allowing you to
 specify the mass-assignment rules in a single location using a very
 simple DSL.
 
+This work was inspired by
+[http://railscasts.com/episodes/371-strong-parameters](RailsCast #371) ---
+thanks, @ryanb!
+
 Usage
 -----
 
@@ -27,14 +31,26 @@ Then create an initializer, `config/initializers/permitted_params.rb`:
 ```ruby
 PermittedParams.setup do |config|
   config.user do
+    # We always permit username and password to be mass-assigned
     scalar :username, :password
+
+    # email can be mass-assigned from create (but not from update)
     scalar :email if action_is(:create)
+
+    # Only admins can change the is_admin flag.  Note that we can call
+    # any controller methods (including current_user) from this scope.
     scalar :is_admin if current_user.admin?
+
+    # We permit job_ids to be an array of scalar values
     array :job_ids
+
+    # We permit person_attributes containing the whitelisted attributes
+    # of person (see definition below)
     nested :person
   end
 
   config.person do
+    # Inheritance!
     inherits :thing_with_name
   end
 
