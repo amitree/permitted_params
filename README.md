@@ -15,7 +15,7 @@ simple DSL.
 
 This work was inspired by
 [http://railscasts.com/episodes/371-strong-parameters](RailsCast #371) ---
-thanks, @ryanb!
+thanks, [https://github.com/ryanb](ryanb)!
 
 Usage
 -----
