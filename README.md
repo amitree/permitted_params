@@ -18,34 +18,42 @@ Usage
 
 Add to your Gemfile:
 
-    gem 'permitted_params'
+```ruby
+gem 'permitted_params'
+```
 
 Then create an initializer, `config/initializers/permitted_params.rb`:
 
-    PermittedParams.setup do |config|
-      config.user do
-        scalar :username, :password
-        scalar :email if action_is(:create)
-        scalar :is_admin if current_user.admin?
-        array :job_ids
-        nested :person
-      end
+```ruby
+PermittedParams.setup do |config|
+  config.user do
+    scalar :username, :password
+    scalar :email if action_is(:create)
+    scalar :is_admin if current_user.admin?
+    array :job_ids
+    nested :person
+  end
 
-      config.person do
-        inherits :thing_with_name
-      end
+  config.person do
+    inherits :thing_with_name
+  end
 
-      config.thing_with_name do
-        scalar :name
-      end
-    end
+  config.thing_with_name do
+    scalar :name
+  end
+end
+```
 
 Now in your controllers, you can simply write:
 
-    @user = User.create(permitted_params.user)
+```ruby
+@user = User.create(permitted_params.user)
+```
 
 or:
 
-    user_attributes = { ... some hash ... }
-    @user = User.create(permitted_params.user(user_attributes))
+```ruby
+user_attributes = { ... some hash ... }
+@user = User.create(permitted_params.user(user_attributes))
+```
 
