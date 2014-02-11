@@ -14,10 +14,10 @@ specify the mass-assignment rules in a single location using a very
 simple DSL.
 
 This work was inspired by
-[RailsCast #371](http://railscasts.com/episodes/371-strong-parameters). 
+[RailsCast #371](http://railscasts.com/episodes/371-strong-parameters).
 Thanks, [ryanb](https://github.com/ryanb)!
 
-Usage
+Installation
 -----
 
 Add to your Gemfile:
@@ -26,7 +26,12 @@ Add to your Gemfile:
 gem 'permitted_params'
 ```
 
-Then create an initializer, `config/initializers/permitted_params.rb`:
+Generate initializer:
+```ruby
+rails generate permitted_params
+```
+
+Or create an initializer manually: `config/initializers/permitted_params.rb`:
 
 ```ruby
 PermittedParams.setup do |config|
