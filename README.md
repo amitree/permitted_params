@@ -13,6 +13,8 @@ The `permitted_params` gem addresses this problem by allowing you to
 specify the mass-assignment rules in a single location using a very
 simple DSL.
 
+See more details on our blog: [http://thesource.amitree.com/2014/02/protected-attributes.html](http://thesource.amitree.com/2014/02/protected-attributes.html).
+
 This work was inspired by
 [RailsCast #371](http://railscasts.com/episodes/371-strong-parameters).
 Thanks, [ryanb](https://github.com/ryanb)!
